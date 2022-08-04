@@ -13,3 +13,9 @@
     max-width: 330px;
     text-align: center;
 }
+
+.profile-image{
+  height: 85%;
+  border-radius: 50%;
+  margin-right: 10px;
+}

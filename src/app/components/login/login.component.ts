@@ -20,11 +20,11 @@ export class LoginComponent implements OnInit {
   cargandospinner = false;
 
   constructor(
-      private fb:FormBuilder, 
-      private _snackBar: MatSnackBar, 
-      private router: Router, 
+      private fb:FormBuilder,
+      private _snackBar: MatSnackBar,
+      private router: Router,
       private LoginService: LoginService,
-      ) { 
+      ) {
 
       this.form =  this.fb.group({
         user: ['',Validators.required],
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
   get _User(){ return this.LoginService.usuario}
@@ -41,28 +42,28 @@ export class LoginComponent implements OnInit {
   ingresar(){
     const user = this.form.value.user
     const password = this.form.value.password
-    
+
     this.LoginService.login(user, password)
       .subscribe( resp =>{
         if(resp){
-          
-          this.DarBievenida(this._User.name)
+
+          this.darBievenida(this._User.name);
 
         } else{
-          
+          this.error();
         }
-        
+
       })
-      
+
   }
 
-DarBievenida(nombre : string){
+darBievenida(nombre : string){
 
-    const mensaje = "Bienvenido "+ `${nombre}` + " !"
+    const mensaje = "¡Bienvenido "+ `${nombre}` + "!"
     this.loading()
     this._snackBar.open(mensaje,'',{
 
-      duration: 5000,
+      duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
 
@@ -74,9 +75,9 @@ DarBievenida(nombre : string){
 
   error(){
 
-    this._snackBar.open('Usuario y/o contraseña incorrectos!!','',{
+    this._snackBar.open('Usuario y/o contraseña incorrectos','',{
 
-      duration: 5000,
+      duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
 
@@ -84,13 +85,14 @@ DarBievenida(nombre : string){
 
   }
 
+
+
   loading(){
 
       this.cargandospinner=true
       setTimeout(() => {
-        this.cargandospinner=false
         this.router.navigate(['dashboard'])
-      },2000);
+      },500);
   }
 
 

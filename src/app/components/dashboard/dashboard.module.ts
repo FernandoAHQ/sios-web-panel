@@ -28,6 +28,7 @@ import { AccessPointComponent } from './inventario/access-point/access-point.com
 import { VlanComponent } from './inventario/vlan/vlan.component';
 import { SwitchComponent } from './inventario/switch/switch.component';
 import { TareasComponent } from './tareas/tareas.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -63,7 +64,8 @@ import { TareasComponent } from './tareas/tareas.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    CompartidoModule
+    CompartidoModule,
+    MatDividerModule
   ]
 })
 export class DashboardModule { }

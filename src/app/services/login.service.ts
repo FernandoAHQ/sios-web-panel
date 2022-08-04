@@ -14,7 +14,7 @@ export class LoginService {
 
   private baseURL : string = environment.baseURL;
   private _usuario!: User;
-  
+
   constructor( private http: HttpClient) {
 
    }
@@ -35,8 +35,9 @@ export class LoginService {
             localStorage.setItem('token',resp.accessToken!);
             localStorage.setItem('menu',JSON.stringify(resp.menu!));
             localStorage.setItem('IdAdmin', resp.user?._id!);
-            
-            this._usuario=resp.user!;
+            localStorage.setItem('name', resp.user?.name!);
+            localStorage.setItem('image', resp.user?.image!);
+           this._usuario=resp.user!;
           }
           else if (resp.status!){console.log(resp.message);}
         }),
@@ -45,7 +46,7 @@ export class LoginService {
 
       )
 
-        
+
   }
 
   validarToken (): Observable<boolean> {
@@ -54,7 +55,7 @@ export class LoginService {
     const token =  localStorage.getItem('token') || ''
 
 
-    const headers= new HttpHeaders().set 
+    const headers= new HttpHeaders().set
     ('Authorization', (` Bearer ${token}`) )
 
     return this.http.get<LoginInterface> (url,{headers})

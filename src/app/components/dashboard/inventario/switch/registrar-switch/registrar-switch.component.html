@@ -2,9 +2,9 @@
     <mat-toolbar>
         <span>Registrar Nuevo AP</span>
     </mat-toolbar>
-    
-    
-    <mat-card style="margin-top: 20 px;" > 
+
+
+    <mat-card style="margin-top: 20 px;" >
         <form [formGroup]="RegisForm" (ngSubmit)="registrarAP()">
 
         <mat-grid-list cols="3" rowHeight="70px">
@@ -19,9 +19,9 @@
 
 
             <mat-grid-tile [colspan]="2" [rowspan]="8">
-                <img src="/assets/img/wifi.png" style="width: 30%;" >
+                <img src="/assets/img/wifi.png" style="width: 80%;" >
             </mat-grid-tile>
-            
+
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field appearance="fill" class="ancho" >
                     <mat-label>Mac Address</mat-label>
@@ -78,12 +78,12 @@
             <button mat-raised-button style="margin-right: 20px;" routerLink="/dashboard/inventario/aps">Volver</button>
             <button type="submit" mat-raised-button color="primary" >Registrar</button>
         </mat-grid-tile>
-        
+
 
         </mat-grid-list>
 
-        
+
         </form>
     </mat-card>
- 
+
 </div>

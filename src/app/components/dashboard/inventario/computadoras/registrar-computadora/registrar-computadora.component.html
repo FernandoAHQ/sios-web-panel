@@ -1,10 +1,10 @@
 <div class="contenedor">
     <mat-toolbar>
-        <span>Resgistrar Nueva Computadora</span>
+        <span>Registrar Nueva Computadora</span>
     </mat-toolbar>
-    
-    
-    <mat-card style="margin-top: 20 px;" > 
+
+
+    <mat-card style="margin-top: 20 px;" >
         <form [formGroup]="RegisForm" (ngSubmit)="registrarPC()">
 
         <mat-grid-list cols="3" rowHeight="70px">
@@ -21,7 +21,7 @@
 
             <mat-grid-tile [colspan]="2" [rowspan]="4">
 
-                <img src="/assets/img/ordenador.png" style="width: 30%;" >
+                <img src="/assets/img/ordenador.png" style="height: 120%;" >
 
             </mat-grid-tile>
 
@@ -54,8 +54,8 @@
 
         </mat-grid-list>
 
-        
+
         </form>
     </mat-card>
- 
+
 </div>

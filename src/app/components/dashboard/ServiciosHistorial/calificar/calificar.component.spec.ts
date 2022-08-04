@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { CalificarComponent } from './calificar.component';
 
@@ -8,6 +9,7 @@ describe('CalificarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [MatDividerModule],
       declarations: [ CalificarComponent ]
     })
     .compileComponents();

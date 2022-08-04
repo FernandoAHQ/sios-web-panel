@@ -5,8 +5,8 @@ import { GradeInterface } from '../interfaces/Interfaces';
 import { ServiciosService } from './admin-role/servicios.service';
 import Push from 'push.js'
 
-//const url=  'https://sios-server-new.herokuapp.com';
-  const url=  'http://10.1.41.40:4000';
+const url=  'https://sios-server-new.herokuapp.com';
+ // const url=  'http://10.1.41.40:4000';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class SocketWebService{
   socket?: Socket
   public StatusSocket: boolean = false;
 
-    constructor(private servicios: ServiciosService ) { 
-      
+    constructor(private servicios: ServiciosService ) {
+
 
     }
 
@@ -36,22 +36,22 @@ export class SocketWebService{
           'accessToken': `Bearer ${Token}`
 
         }
-      
+
       })
     }
 
     status(){
 
       console.log(this.socket!.connect())
-      
-  
+
+
 
     }
 
      escucharService(){
 
       this.socket?.on('services-all', (payload)=>{
-        
+
         console.log("PASE POR AQUI ");
         this.servicios.leerServices(payload);
         console.log(payload);
@@ -82,8 +82,8 @@ export class SocketWebService{
       this.socket!.disconnect();
     }
 
-   
-    
+
+
 
 
 

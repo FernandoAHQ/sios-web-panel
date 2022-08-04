@@ -1,46 +1,66 @@
-    <h1>{{data.report.title}}</h1>
+    <h1 class="title">{{data.report.title}}</h1>
+    <hr>
 
-    <br>
+    <div class="details">
+      <div class="encargado section">
+        <h2>Encargado:</h2>
+        <p>{{data.assignedTo.name}}</p>
+      </div>
 
-    <h2>Encargado: {{data.assignedTo.name}}</h2>
+     <div class="description section">
+      <h2>Descripción del servicio:</h2>
+      <p>{{data.description}}</p>
+     </div>
 
-    <h3>Descricion del servicio: {{data.description}}</h3>
+     <div class="solution section">
+      <h2>Solución al servicio:</h2>
+      <p>{{data.solution}}</p>
+     </div>
 
-    <h3>Solucion al servicio: {{data.solution}}</h3>
-
-    <img [src]="data.evidenceImage" width="50%" height="50%">
+     <div class="image-section section">
+      <h2>Evidencia:</h2>
+      <img [src]="data.evidenceImage" width="50%" height="50%" class="image">
+     </div>
+     <hr>
+    </div>
 
 
     <form [formGroup]="RegisForm" (ngSubmit)="calificarServicio()">
+      <h2>Calificar Servicio</h2>
+<div class="slider quality">
+  <p>Calidad:</p>
 
-    <p>Calidad:</p>
+  <mat-slider
+  formControlName="calidad"
+  role="calidad"
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="1"
+  step="1"
+  min="1"
+  max="10"
+  aria-label="units"></mat-slider>
+</div>
 
-    <mat-slider
-    formControlName="calidad"
-    role="calidad"
-    thumbLabel
-    [displayWith]="formatLabel"
-    tickInterval="1"
-    step="1"
-    min="1"
-    max="10"
-    aria-label="units"></mat-slider>
 
+<div class="slider dificulty">
+  <p>Dificultad:</p>
 
-    <p>Dificultad:</p>
-
-    <mat-slider
-    formControlName="dificultad"
-    thumbLabel
-    [displayWith]="formatLabel"
-    tickInterval="1"
-    step="1"
-    min="1"
-    max="10"
-    aria-label="units"></mat-slider>
+  <mat-slider
+  formControlName="dificultad"
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="1"
+  step="1"
+  min="1"
+  max="10"
+  aria-label="units"></mat-slider>
+</div>
 
 
     </form>
 
-    <button mat-button mat-dialog-close>Cerrar</button>
-    <button type="submit"  mat-raised-button color="primary" (click)="calificarServicio()" mat-dialog-close >Guardar</button>
+ <div class="controls">
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <button type="submit"  mat-raised-button color="primary" (click)="calificarServicio()" mat-dialog-close >Guardar</button>
+ </div>

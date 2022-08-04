@@ -5,6 +5,7 @@ import {  } from '../../../../services/registra-usuario.service';
 import { RegistrarDeptoService } from '../../../../services/registrar-depto.service';
 import { AllUsersTableService } from '../../../../services/all-users-table.service';
 import { DataUsers } from 'src/app/interfaces/InterfaceAllUser';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,9 +16,9 @@ import { DataUsers } from 'src/app/interfaces/InterfaceAllUser';
 export class CrearDeptoComponent implements OnInit {
 
 
-  
 
-  
+
+
 
   role = new FormControl('', Validators.required);
   DataUsers :  DataUsers[] = [];
@@ -25,7 +26,8 @@ export class CrearDeptoComponent implements OnInit {
   DeptoForm: FormGroup;
 
   constructor(
-    private fb:FormBuilder, 
+    private Router:Router,
+    private fb:FormBuilder,
     private _snackBar: MatSnackBar,
     private RegistrarDeptoService: RegistrarDeptoService,
     private AllUsersTableService: AllUsersTableService ) {
@@ -34,14 +36,14 @@ export class CrearDeptoComponent implements OnInit {
         name: ['',Validators.required],
         user: ['',Validators.required],
         ubication:['',Validators.required],
-       
+
       })
      }
 
-     get _Users(){  
-    
+     get _Users(){
+
       return this.AllUsersTableService.DataTable
-    
+
       }
 
     ngOnInit(): void {
@@ -65,16 +67,24 @@ export class CrearDeptoComponent implements OnInit {
     console.log({  name, user, ubication})
 
        this.RegistrarDeptoService.registrar({  name, user, ubication}).subscribe(resp=>{
-         console.log(resp)
-       })
+        console.log(resp)
+        if(resp){
+
+          this.MensajeUsuarioOk(name)
+
+        } else{
+
+          this.error("Ocurrio un Error")
+        }
+
+      })
   }
-  
-  
+
 
   MensajeUsuarioOk(usuario : string){
 
-    const mensaje = "Se creó correctamente el usuario "+ `${usuario}` + " !!!"
-    
+    const mensaje = "Se creó correctamente el departamento "+ `${usuario}`
+
     this._snackBar.open(mensaje,'',{
 
       duration: 5000,
@@ -82,6 +92,8 @@ export class CrearDeptoComponent implements OnInit {
       verticalPosition: 'bottom',
 
     })
+
+    this.Router.navigateByUrl("/dashboard/departamentos")
   }
 
     error(mensaje : string){

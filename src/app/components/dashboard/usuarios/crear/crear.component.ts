@@ -10,7 +10,7 @@ interface Roles {
 }
 
 
-  
+
 
 
 @Component({
@@ -19,11 +19,11 @@ interface Roles {
   styleUrls: ['./crear.component.css']
 })
 
-  
+
 
 export class CrearComponent implements OnInit {
 
- 
+
 
   roles: Roles[] = [
     {value: 'ADMIN_ROLE', viewValue: 'ADMIN_ROLE'},
@@ -38,7 +38,7 @@ export class CrearComponent implements OnInit {
 
   constructor(
     private Router:Router,
-    private fb:FormBuilder, 
+    private fb:FormBuilder,
     private _snackBar: MatSnackBar,
     private RegistraUsuarioService: RegistraUsuarioService) {
 
@@ -70,17 +70,17 @@ export class CrearComponent implements OnInit {
 
           this.error("Ocurrio un Error")
         }
-        
+
       })
 
   }
 
-  
+
 
   MensajeUsuarioOk(usuario : string){
 
-    const mensaje = "Se creó correctamente el usuario "+ `${usuario}` + " !!!"
-    
+    const mensaje = "Se creó correctamente el usuario "+ `${usuario}`
+
     this._snackBar.open(mensaje,'',{
 
       duration: 5000,
@@ -104,13 +104,13 @@ export class CrearComponent implements OnInit {
 
   }
 
-  
 
-  
+
+
 
 
 
 
 }
 
-  
+
