@@ -1,0 +1,55 @@
+
+<div class="container">
+  <div>
+    <h1>{{data.name}}</h1>
+
+<br>
+
+
+<div class="section">
+  <h3>Descricion del servicio:</h3>
+<p>{{data.description}}</p>
+</div>
+
+<div class="section">
+  <h3>Asignado a:</h3>
+<div class="assigned" *ngFor="let person of data.asignments">
+    <a title="{{person.assignedTo.name}}" class="a-image">
+      <img class="circle-image" src="{{person.assignedTo.image}}">
+      </a>
+
+      <p class="a-name">{{person.assignedTo.name}}</p>
+      <p class="a-time">Horario: {{person.time}}:00</p>
+
+    </div>
+
+    <div class="addUser">
+      <mat-form-field name="user" class="add">
+        <mat-select placeholder="Asignar" [(value)]="selected_user">
+          <mat-option *ngFor="let user of UsersSite" [value]="user._id">
+            {{user.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field  style="width: 100px !important;">
+        <mat-select placeholder="Horario" [(value)]="selected_time">
+          <mat-option *ngFor="let hora of horas" [value]="hora">
+            {{hora}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-button color="primary" (click)="assign(selected_user, selected_time)">asignar</button>
+
+    </div>
+
+</div>
+
+
+  </div>
+
+  <button mat-button mat-dialog-close color="warn" class="close">Cerrar</button>
+
+</div>
+

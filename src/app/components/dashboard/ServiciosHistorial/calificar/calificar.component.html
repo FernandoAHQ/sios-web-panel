@@ -1,0 +1,46 @@
+    <h1>{{data.report.title}}</h1>
+
+    <br>
+
+    <h2>Encargado: {{data.assignedTo.name}}</h2>
+
+    <h3>Descricion del servicio: {{data.description}}</h3>
+
+    <h3>Solucion al servicio: {{data.solution}}</h3>
+
+    <img [src]="data.evidenceImage" width="50%" height="50%">
+
+
+    <form [formGroup]="RegisForm" (ngSubmit)="calificarServicio()">
+
+    <p>Calidad:</p>
+
+    <mat-slider
+    formControlName="calidad"
+    role="calidad"
+    thumbLabel
+    [displayWith]="formatLabel"
+    tickInterval="1"
+    step="1"
+    min="1"
+    max="10"
+    aria-label="units"></mat-slider>
+
+
+    <p>Dificultad:</p>
+
+    <mat-slider
+    formControlName="dificultad"
+    thumbLabel
+    [displayWith]="formatLabel"
+    tickInterval="1"
+    step="1"
+    min="1"
+    max="10"
+    aria-label="units"></mat-slider>
+
+
+    </form>
+
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button type="submit"  mat-raised-button color="primary" (click)="calificarServicio()" mat-dialog-close >Guardar</button>
