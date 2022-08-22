@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 interface Status {
   value: string;
 }
+interface System {
+  value: string;
+}
 
 @Component({
   selector: 'app-registrar-computadora',
@@ -25,8 +28,20 @@ export class RegistrarComputadoraComponent implements OnInit {
     {value: 'Mantenimiento'},
   ];
 
+  SystemsAll: System[] = [
+    {value: 'Windows 10 x64'},
+    {value: 'Windows 10 x32'},
+    {value: 'Windows 8.1 x64'},
+    {value: 'Windows 8.1 x32'},
+    {value: 'Windows 8 x64'},
+    {value: 'Windows 8 x32'},
+    {value: 'Windows 7 x64'},
+    {value: 'Windows 7 x32'},
+  ];
+
   DeparmentSelected: string  = "";
   StatusSelected:    string  = "";
+  SystemSelected:    string  = "";
 
   constructor(
     private fb:FormBuilder,
@@ -39,6 +54,11 @@ export class RegistrarComputadoraComponent implements OnInit {
       Departamento: ['',Validators.required],
       Folio: ['',Validators.required],
       Status:['',Validators.required],
+      Processor:['',Validators.required],
+      Storage:['',Validators.required],
+      Ram:['',Validators.required],
+      System:['',Validators.required],
+
     })
   }
 
@@ -65,8 +85,13 @@ export class RegistrarComputadoraComponent implements OnInit {
     const deparment = this.RegisForm.value.Departamento
     const folio = this.RegisForm.value.Folio
     const status = this.RegisForm.value.Status
+    const processor = this.RegisForm.value.Processor
+    const storage = this.RegisForm.value.Storage
+    const ram = this.RegisForm.value.RAM
+    const so = this.RegisForm.value.System
 
-    this.ServicesByStatusService.PostRegistrarPC(deparment, folio, status).subscribe(
+
+    this.ServicesByStatusService.PostRegistrarPC(deparment, folio, status, processor, storage, ram, so).subscribe(
       resp=>{
         if(resp.status){
           this.MensajeUsuarioOk(folio)
@@ -78,8 +103,6 @@ export class RegistrarComputadoraComponent implements OnInit {
         }
       }
     )
-
-
   }
 
 

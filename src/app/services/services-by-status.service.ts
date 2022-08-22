@@ -297,10 +297,21 @@ export class ServicesByStatusService {
   }
 
 
-  PostRegistrarPC(department:any, folio:any, status: any){
+  PostRegistrarPC(department:any, folio:any, status: any, processor: any, storage: any, ram: any, system: any){
 
     const url= `${this.baseURL}/inventory/computers/register`
-    const body={department, folio, status}
+    const body={
+      department: department,
+      folio: folio,
+      status: status,
+      specs: {
+        processor: processor,
+        storage: storage,
+        ram: ram,
+        system: system
+      }
+    }
+
     console.log(body);
     return this.http.post<RespRegisterPC>(url, body).pipe(
       tap(resp=>{
@@ -313,9 +324,22 @@ export class ServicesByStatusService {
   }
 
 
-  ActualizarPC(id:any, department:any, folio:any, status: any){
+  ActualizarPC(id:any, department:any, folio:any, status: any, processor: any, storage: any, ram: any, system: any){
     const url= `${this.baseURL}/inventory/computers/update`
-    const body={id,department, folio, status}
+    const body={
+      id: id,
+      department: department,
+      folio: folio,
+      status: status,
+      specs: {
+        specs: {
+          processor: processor,
+          storage: storage,
+          ram: ram,
+          system: system
+        }
+      }
+    }
     console.log(body);
 
     return this.http.post(url,body).pipe(

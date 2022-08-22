@@ -9,7 +9,7 @@
 
         <mat-grid-list cols="3" rowHeight="70px">
 
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
 
             <mat-form-field appearance="fill" class="select">
                 <mat-label>Departamanto</mat-label>
@@ -19,11 +19,23 @@
               </mat-form-field>
             </mat-grid-tile>
 
-            <mat-grid-tile [colspan]="2" [rowspan]="4">
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+              <mat-form-field appearance="fill" class="select">
+                  <mat-label>Procesador</mat-label>
+                    <input matInput autocomplete="off" formControlName="Processor">
+                </mat-form-field>
+              </mat-grid-tile>
+
+
+
+              <mat-grid-tile [colspan]="1" [rowspan]="3">
 
                 <img src="/assets/img/ordenador.png" style="height: 120%;" >
 
             </mat-grid-tile>
+
 
 
             <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -38,6 +50,16 @@
 
             <mat-grid-tile [colspan]="1" [rowspan]="1">
 
+              <mat-form-field appearance="fill" class="select">
+                  <mat-label>Almacenamiento</mat-label>
+                    <input matInput autocomplete="off" formControlName="Storage">
+                </mat-form-field>
+              </mat-grid-tile>
+
+
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+
                 <mat-form-field appearance="fill" class="select">
                     <mat-label>Status</mat-label>
                     <mat-select formControlName="Status" [(value)]="StatusSelected">
@@ -46,11 +68,33 @@
                   </mat-form-field>
                 </mat-grid-tile>
 
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+                  <mat-form-field appearance="fill" class="select">
+                      <mat-label>RAM</mat-label>
+                        <input matInput autocomplete="off" formControlName="Ram">
+                    </mat-form-field>
+                  </mat-grid-tile>
+
+
+
             <mat-grid-tile [colspan]="1" [rowspan]="1" class="ancho">
                 <button mat-raised-button style="margin-right: 20px;" routerLink="/dashboard/inventario/computers">Volver</button>
                 <button type="submit" mat-raised-button color="primary" >Registrar</button>
 
             </mat-grid-tile>
+
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+              <mat-form-field appearance="fill" class="select">
+                  <mat-label>Sistema Operativo</mat-label>
+                  <mat-select formControlName="System" [(value)]="SystemSelected">
+                    <mat-option *ngFor="let so of SystemsAll" [value]= "so.value" > {{so.value}} </mat-option>
+                  </mat-select>                </mat-form-field>
+              </mat-grid-tile>
+
 
         </mat-grid-list>
 

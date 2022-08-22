@@ -10,6 +10,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 interface Status {
   value: string;
 }
+interface System {
+  value: string;
+}
 
 @Component({
   selector: 'app-modificar-computadoras',
@@ -19,31 +22,47 @@ interface Status {
 export class ModificarComputadorasComponent implements OnInit {
 
   constructor(
-    private fb:FormBuilder, 
+    private fb:FormBuilder,
     private _snackBar: MatSnackBar,
     private Router:Router,
     private ServicesByStatusService:ServicesByStatusService,
     public dialogRef: MatDialogRef<ModificarComputadorasComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Computer
-    ) { 
+    ) {
       this.RegisForm =  this.fb.group({
-        Departamento: [this.data.department,Validators.required],
-        Folio: [this.data.folio,Validators.required],
-        Status:[this.data.status,Validators.required],
+        Departamento: ['',Validators.required],
+        Folio: ['',Validators.required],
+        Status:['',Validators.required],
+        Processor:['',Validators.required],
+        Storage:['',Validators.required],
+        Ram:['',Validators.required],
+        System:['',Validators.required],
       })
     }
 
   RegisForm: FormGroup;
   Deparments!: Department[];
 
-  DeparmentSelected: string  = ""; 
-  StatusSelected:    string  = ""; 
+  DeparmentSelected: string  = "";
+  StatusSelected:    string  = "";
+  SystemSelected:    string  = "";
 
 
   StatusAll: Status[] = [
     {value: 'Activo'},
     {value: 'Inactivo'},
     {value: 'Mantenimiento'},
+  ];
+
+  SystemsAll: System[] = [
+    {value: 'Windows 10 x64'},
+    {value: 'Windows 10 x32'},
+    {value: 'Windows 8.1 x64'},
+    {value: 'Windows 8.1 x32'},
+    {value: 'Windows 8 x64'},
+    {value: 'Windows 8 x32'},
+    {value: 'Windows 7 x64'},
+    {value: 'Windows 7 x32'},
   ];
 
   ngOnInit(): void {
@@ -69,26 +88,29 @@ export class ModificarComputadorasComponent implements OnInit {
     const deparment = this.RegisForm.value.Departamento
     const folio = this.RegisForm.value.Folio
     const status = this.RegisForm.value.Status
+    const processor = this.RegisForm.value.Processor
+    const storage = this.RegisForm.value.Storage
+    const ram = this.RegisForm.value.RAM
+    const so = this.RegisForm.value.System
     const id= this.data._id
-    console.log("===>" + id);
 
-    this.ServicesByStatusService.ActualizarPC(id,deparment, folio, status).subscribe(
+    this.ServicesByStatusService.ActualizarPC(id,deparment, folio, status, processor, storage, ram, so).subscribe(
 
-      
-      
-      
+
+
+
     )
 
-    
-    location.reload(); 
+
+    location.reload();
 
   }
 
 
   MensajeUsuarioOk(MSG : string){
 
-    const mensaje = "Se creó Actualizo la computadora "+ `${MSG}` + " !!!"
-    
+    const mensaje = "Se actualizó la computadora "+ `${MSG}` + " !!!"
+
     this._snackBar.open(mensaje,'',{
 
       duration: 5000,
@@ -97,7 +119,7 @@ export class ModificarComputadorasComponent implements OnInit {
 
     })
 
-    location.reload(); 
+    location.reload();
   }
 
   error(mensaje : string){

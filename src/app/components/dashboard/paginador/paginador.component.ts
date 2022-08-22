@@ -58,8 +58,8 @@ export class PaginadorComponent implements OnInit {
     this.currentvalue
     const url = this.router.url.split('?')[0]
     console.log(url)
-      this.router.navigateByUrl(`${ url }?page=${page}&value=${this.currentvalue}`)
-    
+      this.router.navigateByUrl(`${ url }?page=${page}`)
+
   }
 
 

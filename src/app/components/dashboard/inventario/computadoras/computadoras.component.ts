@@ -24,7 +24,7 @@ export class ComputadorasComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe((querys:any)=>{
 
-      
+
 
       if(!querys.page){
         this.PaginaActual= 1;
@@ -41,10 +41,10 @@ export class ComputadorasComponent implements OnInit {
     })
 
   }
-  get data(){  
-    
+  get data(){
+
     return this.ServicesByStatusService.DataInventory
-  
+
   }
 
   value=""
@@ -73,7 +73,7 @@ export class ComputadorasComponent implements OnInit {
 
   editar(pc:Computer){
 
-    this.dialog.open(ModificarComputadorasComponent, {width: '400px',data:pc})
+    this.dialog.open(ModificarComputadorasComponent, {width: '700px',data:pc})
 
 
   }
